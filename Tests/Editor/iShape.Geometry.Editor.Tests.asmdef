@@ -1,0 +1,13 @@
+{
+    "name": "iShape.Breaker.Editor.Tests",
+    "references": [
+        "iShape.Breaker.Runtime",
+        "iShape.Geometry.Runtime"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}

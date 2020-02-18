@@ -1,0 +1,7 @@
+{
+	"name": "iShape.Breaker.Runtime",
+	"excludePlatforms": [],
+	"references": [
+		"iShape.Geometry.Runtime"
+	]
+}
