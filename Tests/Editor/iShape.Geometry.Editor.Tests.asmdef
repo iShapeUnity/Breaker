@@ -2,7 +2,8 @@
     "name": "iShape.Breaker.Editor.Tests",
     "references": [
         "iShape.Breaker.Runtime",
-        "iShape.Geometry.Runtime"
+        "iShape.Geometry.Runtime",
+        "iShape.Triangulation.Runtime"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
