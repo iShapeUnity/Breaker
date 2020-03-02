@@ -10,20 +10,20 @@ namespace iShape.Breaker {
 
         private static readonly Allocator tempAllocator = Allocator.Temp;
         
-        public enum SmallSpawnStrategy {
+        public enum FadeSpawnStrategy {
             no,
             random,
             randomFade
         }
 
-        private float minArea;
-        private int maxCount;
-        private SmallSpawnStrategy smallSpawnStrategy;
+        private readonly float minArea;
+        private readonly int maxCount;
+        private readonly FadeSpawnStrategy fadeSpawnStrategy;
 
-        public BreakSolver(float minArea, int maxCount, SmallSpawnStrategy smallSpawnStrategy) {
+        public BreakSolver(float minArea, int maxCount, FadeSpawnStrategy fadeSpawnStrategy) {
             this.minArea = minArea;
             this.maxCount = maxCount;
-            this.smallSpawnStrategy = smallSpawnStrategy;
+            this.fadeSpawnStrategy = fadeSpawnStrategy;
         }
 
         public PathList Divide(NativeArray<Triangle> triangles, Allocator allocator) {
@@ -73,15 +73,15 @@ namespace iShape.Breaker {
         private bool Divide(Triangle triangle, ref DynamicArray<Triangle> triangles, ref DynamicPathList result) {
             float s = triangle.Area;
             if (s < this.minArea) {
-                switch (this.smallSpawnStrategy) {
-                    case SmallSpawnStrategy.no:
+                switch (this.fadeSpawnStrategy) {
+                    case FadeSpawnStrategy.no:
                         return false;
-                    case SmallSpawnStrategy.random:
+                    case FadeSpawnStrategy.random:
                     if (Random.value < 0.5f) {
                         return false;
                     }
                     break;
-                    case SmallSpawnStrategy.randomFade:
+                    case FadeSpawnStrategy.randomFade:
                     if (Random.value > s / this.minArea) {
                         return false;
                     }
