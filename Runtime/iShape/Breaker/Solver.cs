@@ -8,8 +8,8 @@ namespace iShape.Breaker {
 
     public struct BreakSolver {
 
-        private static readonly Allocator tempAllocator = Allocator.Temp;
-        
+        private const Allocator tempAllocator = Allocator.Temp;
+
         public enum FadeSpawnStrategy {
             no,
             random,

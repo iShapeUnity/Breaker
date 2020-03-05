@@ -1,6 +1,4 @@
-﻿
-using iShape.Collections;
-using iShape.Geometry;
+﻿using iShape.Geometry;
 using Unity.Collections;
 using UnityEngine;
 
