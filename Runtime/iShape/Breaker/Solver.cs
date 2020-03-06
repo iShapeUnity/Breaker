@@ -1,4 +1,5 @@
-﻿using iShape.Collections;
+﻿using System;
+using iShape.Collections;
 using iShape.Geometry;
 using iShape.Geometry.Container;
 using Unity.Collections;
@@ -72,20 +73,24 @@ namespace iShape.Breaker {
         
         private bool Divide(Triangle triangle, ref DynamicArray<Triangle> triangles, ref DynamicPathList result) {
             float s = triangle.Area;
+            
             if (s < this.minArea) {
+                float value = random(s);
                 switch (this.fadeSpawnStrategy) {
                     case FadeSpawnStrategy.no:
                         return false;
                     case FadeSpawnStrategy.random:
-                    if (Random.value < 0.5f) {
+                    if (value < 0.5f) {
                         return false;
                     }
                     break;
                     case FadeSpawnStrategy.randomFade:
-                    if (Random.value > s / this.minArea) {
+                    if (value > s / this.minArea) {
                         return false;
                     }
                     break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
 
@@ -141,6 +146,15 @@ namespace iShape.Breaker {
 
             return true;
         }
+
+        private static float random(double value) {
+            long bits = BitConverter.DoubleToInt64Bits(value);
+            long mantissa = bits & 0xfffffffffffffL;
+            long tail = mantissa % 1000;
+            float random = 0.001f * tail;
+            return random;
+        }
+
     }
 
     internal static class Vector2Extension {
