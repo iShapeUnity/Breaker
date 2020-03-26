@@ -29,12 +29,12 @@ namespace iShape.Breaker {
             public float area {
                 get {
                     float s = 0;
-                    s += p0.x * (p1.y - p5.y);
-                    s += p1.x * (p2.y - p0.y);
-                    s += p2.x * (p3.y - p1.y);
-                    s += p3.x * (p4.y - p2.y);
-                    s += p4.x * (p5.y - p3.y);
-                    s += p5.x * (p0.y - p4.y);
+                    s += p0.x * (p5.y - p1.y);
+                    s += p1.x * (p0.y - p2.y);
+                    s += p2.x * (p1.y - p3.y);
+                    s += p3.x * (p2.y - p4.y);
+                    s += p4.x * (p3.y - p5.y);
+                    s += p5.x * (p4.y - p0.y);
                     return 0.5f * s;
                 }
             }
